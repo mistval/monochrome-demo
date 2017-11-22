@@ -1,6 +1,6 @@
 let monochrome = require('monochrome-bot');
 
-let configFilePath = __dirname + '/config.json';
+let configFilePath = __dirname + '/config.js';
 let commandsDirectoryPath = __dirname + '/commands';
 let messageProcessorsDirectoryPath = __dirname + '/message_processors';
 let settingsFilePath = __dirname + '/server_settings.json';
