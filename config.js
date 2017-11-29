@@ -36,4 +36,4 @@ module.exports = {
   "statusRotationIntervalInSeconds": 600, // How often to change status.
   "colorForSettingsSystemEmbeds": 2522111, // The built-in settings command uses embeds. That field controls the color of those embeds.
   "settingsCategorySeparator": "/" // Settings are hierarchical. If the value of this field is "/", then a setting called "enabled" under a category called "lazer_cannon" will be referred to as "lazer_cannon/enabled"
-}
+};
