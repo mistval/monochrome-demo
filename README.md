@@ -1,7 +1,7 @@
 # monochrome demo
 This is a demo of using the [monochrome Discord bot core](https://www.npmjs.com/package/monochrome-bot). For most users, this is a good place to start, as everything is set up and all you need to do to get the bot online is add your bot token to the config. Then you can delete the commands you do not want, and add your own.
 
-See the [master branch readme](https://github.com/mistval/monochrome/blob/master/README.md) for more detailed documentation of features.
+See the [master branch readme](https://github.com/mistval/monochrome/blob/master/README.md) for more detailed documentation of features and help with writing commands.
 ## Installation
 ```
 git clone https://github.com/mistval/monochrome-demo.git
@@ -27,10 +27,9 @@ The demo version of monochrome comes with demo commands, demo message processors
 <ol>
 <li>Delete unwanted commands from monochrome/commands. Simply delete the files for the commands you don't want.</li>
 <li>Delete unwanted message processors from monochrome/message_processors. Simply delete the files for the message processors you don't want.</li>
-<li>Delete monochrome/server_settings.js if you do not need to create any settings. If you do need to create your own settings, read below and add them to monochrome/server_settings.js.</li>
+<li>Delete monochrome/server_settings.js if you do not need to create any settings. If you do need to create your own settings, add them to monochrome/server_settings.js.</li>
 <li>Write code for your own commands and add them to monochrome/commands.</li>
 <li>Write code for your own message processors and add them to monochrome/message_processors.</li>
-<li>Add your own settings hierarchy to monochrome/server_settings.js.</li>
 <li>Update monochrome/config.json with your desired configuration.</li>
 </ol>
 
