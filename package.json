@@ -10,6 +10,6 @@
   "author": "",
   "license": "Unlicense",
   "dependencies": {
-    "monochrome-bot": "^1.0.0"
+    "monochrome-bot": "^1.1.0"
   }
 }
