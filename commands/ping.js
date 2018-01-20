@@ -6,6 +6,6 @@ module.exports = {
   serverAdminOnly: false,
   shortDescription: 'You say bot!ping, I say pong.',
   action(bot, msg, suffix) {
-    return msg.channel.createMessage('Pong!');
+    return msg.channel.createMessage('Pong!', null, msg);
   },
 };
