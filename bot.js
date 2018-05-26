@@ -5,9 +5,11 @@ let commandsDirectoryPath = __dirname + '/commands';
 let messageProcessorsDirectoryPath = __dirname + '/message_processors';
 let settingsFilePath = __dirname + '/server_settings.js';
 
-let bot = new monochrome(
+let bot = new monochrome({
   configFilePath,
   commandsDirectoryPath,
   messageProcessorsDirectoryPath,
-  settingsFilePath);
+  settingsFilePath
+});
+
 bot.connect();

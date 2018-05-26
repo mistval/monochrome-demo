@@ -4,9 +4,9 @@
 */
 module.exports = {
   name: 'Palindrome',
-  action(bot, msg) {
+  action(bot, msg, monochrome) {
     let text = msg.content;
-    if (!text) {
+    if (!text || text.length < 2) {
       return false; // Since we are not interested in this message, return false.
     }
     let textBackwards = text.split('').reverse().join('');

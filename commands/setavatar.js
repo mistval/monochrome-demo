@@ -1,6 +1,5 @@
 'use strict'
 const request = require('request-promise').defaults({encoding: null});
-const logger = require('monochrome-bot').logger;
 const PublicError = require('monochrome-bot').PublicError;
 
 /**
