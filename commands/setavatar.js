@@ -10,6 +10,7 @@ module.exports = {
   commandAliases: ['}setavatar'],
   botAdminOnly: true,
   shortDescription: 'Change my avatar.',
+  uniqueId: 'setavatar',
   usageExample: '}setavatar http://url.com/image.png',
   action(bot, msg, suffix) {
     if (!suffix) {

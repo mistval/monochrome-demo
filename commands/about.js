@@ -4,7 +4,7 @@ const botVersion = require('../package.json').version;
 
 module.exports = {
   commandAliases: ['bot!about'],
-  uniqueId: 'about53463',
+  uniqueId: 'about',
   cooldown: 5,
   shortDescription: 'Show some meta information about me.',
   action(bot, msg, suffix) {

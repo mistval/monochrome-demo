@@ -13,7 +13,7 @@ const Navigation = require('monochrome-bot').Navigation;
 module.exports = {
   commandAliases: ['bot!navigation', 'bot!nav', 'nnnnn'],
   canBeChannelRestricted: true,
-  uniqueId: 'nav403543',
+  uniqueId: 'navigation',
   serverAdminOnly: false,
   shortDescription: 'Demonstrate how to use a navigation.',
   aliasesForHelp: ['bot!navigation', 'bot!nav'],

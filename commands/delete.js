@@ -10,6 +10,7 @@ const PublicError = require('monochrome-bot').PublicError;
 module.exports = {
   commandAliases: ['}delete', '}d'],
   botAdminOnly: true,
+  uniqueId: 'delete',
   shortDescription: 'Delete a message.',
   usageExample: '}setavatar [channelId] [messageId]',
   action(bot, msg, suffix) {

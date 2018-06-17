@@ -2,7 +2,7 @@
 module.exports = {
   commandAliases: ['bot!ping', 'bot!p'],
   canBeChannelRestricted: true,
-  uniqueId: 'ping5959045',
+  uniqueId: 'ping',
   serverAdminOnly: false,
   shortDescription: 'You say bot!ping, I say pong.',
   action(bot, msg, suffix) {

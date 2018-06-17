@@ -7,7 +7,7 @@ const PublicError = require('monochrome-bot').PublicError;
 module.exports = {
   commandAliases: ['bot!addquote', 'bot!aq'],
   canBeChannelRestricted: true,
-  uniqueId: 'addQuoteCommand490340259',
+  uniqueId: 'addquote',
   serverAdminOnly: false,
   shortDescription: 'Add a quote to my database.',
   usageExample: '}addquote I\'m not very quotable',

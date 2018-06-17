@@ -16,6 +16,7 @@ module.exports = {
   botAdminOnly: true,
   shortDescription: 'Dump a snapshot of the heap to the disk, for debugging purposes.',
   usageExample: '}dumpheap outputfilename',
+  uniqueId: 'dumpheap',
   action(bot, msg, suffix) {
     if (!heapDump) {
       throw PublicError.createWithCustomPublicMessage('Module \'heapdump\' not found. You have to install heapdump to use this command. npm install heapdump', false, 'No heapdump module');

@@ -7,7 +7,7 @@ module.exports = {
   commandAliases: ['bot!getquote', 'bot!gq'],
   canBeChannelRestricted: false,
   serverAdminOnly: false,
-  uniqueId: 'getQuote45954',
+  uniqueId: 'getquote',
   shortDescription: 'Get a random quote from my database.',
   longDescription: 'Get a random quote from my database. I will randomly select a quote from among the quotes stored with the bot!addquote command.',
   action(bot, msg, suffix, monochrome, settings, extension) {

@@ -8,6 +8,7 @@ const PublicError = require('monochrome-bot').PublicError;
 module.exports = {
   commandAliases: ['}broadcast', '}b'],
   botAdminOnly: true,
+  uniqueId: 'broadcast',
   shortDescription: 'Send a message as me.',
   usageExample: '}broadcast [channelId] Hello!',
   action(bot, msg, suffix) {
