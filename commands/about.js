@@ -3,7 +3,7 @@ const libVersion = require('../node_modules/eris/package.json').version;
 const botVersion = require('../package.json').version;
 
 module.exports = {
-  commandAliases: ['bot!about'],
+  commandAliases: ['about'],
   uniqueId: 'about',
   cooldown: 5,
   shortDescription: 'Show some meta information about me.',

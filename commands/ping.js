@@ -1,10 +1,10 @@
 'use strict'
 module.exports = {
-  commandAliases: ['bot!ping', 'bot!p'],
+  commandAliases: ['ping', 'p'],
   canBeChannelRestricted: true,
   uniqueId: 'ping',
   serverAdminOnly: false,
-  shortDescription: 'You say bot!ping, I say pong.',
+  shortDescription: 'You say <prefix>ping, I say pong.',
   action(bot, msg, suffix) {
     return msg.channel.createMessage('Pong!', null, msg);
   },

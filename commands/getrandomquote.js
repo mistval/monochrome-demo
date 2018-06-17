@@ -4,7 +4,7 @@
 * Demonstrates getting persisted data.
 */
 module.exports = {
-  commandAliases: ['bot!getquote', 'bot!gq'],
+  commandAliases: ['getquote', 'gq'],
   canBeChannelRestricted: false,
   serverAdminOnly: false,
   uniqueId: 'getquote',

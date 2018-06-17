@@ -11,12 +11,12 @@ const Navigation = require('monochrome-bot').Navigation;
 * The third has infinite pages of random numbers.
 */
 module.exports = {
-  commandAliases: ['bot!navigation', 'bot!nav', 'nnnnn'],
+  commandAliases: ['navigation', 'nav'],
   canBeChannelRestricted: true,
   uniqueId: 'navigation',
   serverAdminOnly: false,
   shortDescription: 'Demonstrate how to use a navigation.',
-  aliasesForHelp: ['bot!navigation', 'bot!nav'],
+  aliasesForHelp: ['navigation', 'nav'],
   action(bot, msg, suffix, monochrome) {
     let randomNumberChapter = new NavigationChapter(new RandomNumberDataSource());
 

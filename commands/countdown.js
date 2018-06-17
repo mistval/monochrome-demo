@@ -5,7 +5,7 @@
 * Syntax: }broadcast [channel_id] [announcement]
 */
 module.exports = {
-  commandAliases: ['bot!countdown'],
+  commandAliases: ['countdown'],
   botAdminOnly: false,
   uniqueId: 'countdown',
   requiredSettings: ['fun/countdown_start'],

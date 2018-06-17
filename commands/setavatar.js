@@ -7,11 +7,11 @@ const PublicError = require('monochrome-bot').PublicError;
 * Syntax: }setavatar [http url]
 */
 module.exports = {
-  commandAliases: ['}setavatar'],
+  commandAliases: ['setavatar'],
   botAdminOnly: true,
   shortDescription: 'Change my avatar.',
   uniqueId: 'setavatar',
-  usageExample: '}setavatar http://url.com/image.png',
+  usageExample: '<prefix>setavatar http://url.com/image.png',
   action(bot, msg, suffix) {
     if (!suffix) {
       throw PublicError.createWithCustomPublicMessage('Say \'}setavatar [http url]\' to set my avatar.', false, 'No argument');
