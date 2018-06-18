@@ -6,9 +6,9 @@ let settingsFilePath = __dirname + '/server_settings.js';
 let logsDirectoryPath = __dirname + '/logs';
 
 let bot = new monochrome({
-  botToken: '', // (required) your bot's token
+  botToken: '', // (required) YOUR BOT TOKEN HERE
   botAdminIds: [''], // (optional) Discord user IDs for bot admins. They will be able to run admin-only commands like eval.
-  prefixes: ['!'], // (optional) A list of default prefixes for your bot. If this is omitted, server admins won't be able to customize your bots prefixes.
+  prefixes: ['!'], // (optional) A list of default prefixes for your bot.
   commandsDirectoryPath: commandsDirectoryPath, // (optional) The path to a directory where you will keep your command files
   messageProcessorsDirectoryPath: messageProcessorsDirectoryPath, // (optional) The path to a directory where you will keep your message processor files
   logsDirectoryPath: logsDirectoryPath, // (optional) The directory to write logs to (can be an empty string). Logs are also written to the console.
