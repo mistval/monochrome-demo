@@ -1,7 +1,6 @@
 const reload = require('require-reload')(require);
 const assert = require('assert');
 const Hook = reload('./../message_processors/user_and_channel_hook.js');
-const getUserIsServerAdmin = require('monochrome-bot').util.userIsServerAdmin;
 const state = require('./../unreloadable_data.js');
 
 // CONFIG START
@@ -379,7 +378,7 @@ async function requestConfirmation(hook, monochrome, msg, setting, newUserFacing
 
 async function tryApplyNewSetting(hook, monochrome, msg, setting, newUserFacingValue, locationString, confirmationSupplied) {
   const settings = monochrome.getSettings();
-  const userIsServerAdmin = getUserIsServerAdmin(msg, monochrome.getConfig());
+  const userIsServerAdmin = monochrome.userIsServerAdmin(msg);
 
   const cancelBackResult = tryHandleCancelBack(hook, monochrome, msg, setting);
   if (cancelBackResult) {
@@ -434,7 +433,7 @@ async function tryApplyNewSetting(hook, monochrome, msg, setting, newUserFacingV
 }
 
 async function tryPromptForSettingLocation(hook, msg, monochrome, settingNode, newUserFacingValue) {
-  const userIsServerAdmin = getUserIsServerAdmin(msg, monochrome.getConfig());
+  const userIsServerAdmin = monochrome.userIsServerAdmin(msg);
   const settings = monochrome.getSettings();
   const isDm = !msg.channel.guild;
 
