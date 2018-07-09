@@ -290,7 +290,8 @@ function createLocationPromptString(settingNode, isDm) {
 }
 
 function tryCreateLocationErrorString(locationString, msg, setting) {
-  if (locationString === Location.ME) {
+  const locationStringLowerCase = locationString.toLowerCase();
+  if (locationStringLowerCase === Location.ME) {
     if (!setting.userSetting) {
       if (setting.serverSetting && setting.channelSetting) {
         return `That setting cannot be set as a user setting. You can say **${Location.THIS_SERVER}**, **${Location.THIS_CHANNEL}**, **${CANCEL}**, **${BACK}**, or provide a list of channels separated by spaces, for example: **#general #bot**`;
@@ -306,7 +307,7 @@ function tryCreateLocationErrorString(locationString, msg, setting) {
 
     return undefined;
   }
-  if (locationString === Location.THIS_SERVER) {
+  if (locationStringLowerCase === Location.THIS_SERVER) {
     if (!setting.serverSetting) {
       if (setting.userSetting && setting.channelSetting) {
         return `That setting cannot be set as a server setting. You can say **${Location.ME}**, **${Location.THIS_CHANNEL}**, **${CANCEL}**, **${BACK}**, or provide a list of channels separated by spaces, for example: **#general #bot**`;
@@ -322,7 +323,7 @@ function tryCreateLocationErrorString(locationString, msg, setting) {
 
     return undefined;
   }
-  if (locationString === Location.THIS_CHANNEL) {
+  if (locationStringLowerCase === Location.THIS_CHANNEL) {
     if (!setting.channelSetting) {
       if (setting.userSetting && setting.serverSetting) {
         return `That setting cannot be set as a channel setting. You can say **${Location.ME}**, **${Location.THIS_SERVER}**, **${CANCEL}**, or **${BACK}**.`;
@@ -340,7 +341,7 @@ function tryCreateLocationErrorString(locationString, msg, setting) {
   }
 
   // If we're here, then we are treating the location string as a list of channels.
-  const channelIds = getChannelIds(locationString, msg);
+  const channelIds = getChannelIds(locationStringLowerCase, msg);
   if (typeof channelIds === typeof '') {
     return `I didn\'t find a channel in this server called **${channelIds}**. Please check that the channel exists and try again.`;
   }
