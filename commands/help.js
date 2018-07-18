@@ -116,7 +116,8 @@ async function showGeneralHelp(msg, helpCommandHelper, prefix) {
 
 function showAdvancedHelp(msg, targetAlias, helpCommandHelper, prefix) {
   const command = helpCommandHelper.findCommandForAlias(targetAlias, msg.channel.guild ? msg.channel.guild.id : msg.channel.id);
-  if (!command) {
+  const unprefixedDescription = command.longDescription || command.shortDescription;
+  if (!command || !unprefixedDescription) {
     return showGeneralHelp(msg, helpCommandHelper, prefix);
   }
 
@@ -140,7 +141,6 @@ function showAdvancedHelp(msg, targetAlias, helpCommandHelper, prefix) {
     fields.push({name: 'Usage example', value: command.usageExample.replace(PREFIX_REPLACE_REGEX, prefix)});
   }
 
-  const unprefixedDescription = command.longDescription || command.shortDescription;
   const prefixedDescription = unprefixedDescription.replace(PREFIX_REPLACE_REGEX, prefix);
 
   let botContent = {
