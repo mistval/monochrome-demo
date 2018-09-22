@@ -1,6 +1,5 @@
 'use strict'
 const reload = require('require-reload')(require);
-const NavigationPage = require('monochrome-bot').NavigationPage;
 const NavigationChapter = require('monochrome-bot').NavigationChapter;
 const Navigation = require('monochrome-bot').Navigation;
 
@@ -72,10 +71,11 @@ class RandomNumberDataSource {
     let number = Math.floor((Math.random() * 1000) % 1000);
 
     // Either a NavigationPage or a Promise that returns a NavigationPage can be returned.
-    return new NavigationPage({
+    return {
       embed: {
         title: 'Random Number ' + (pageIndex + 1).toString(),
         description: (number + 1).toString(),
-      }});
+      }
+    };
   }
 }
