@@ -1,9 +1,7 @@
 'use strict'
 const reload = require('require-reload')(require);
-const NavigationPage = require('monochrome-bot').NavigationPage;
 const NavigationChapter = require('monochrome-bot').NavigationChapter;
 const Navigation = require('monochrome-bot').Navigation;
-const navigationManager = require('monochrome-bot').navigationManager;
 
 /*
 * Demonstrates how to create a navigation with three chapters.
@@ -12,13 +10,13 @@ const navigationManager = require('monochrome-bot').navigationManager;
 * The third has infinite pages of random numbers.
 */
 module.exports = {
-  commandAliases: ['bot!navigation', 'bot!nav', 'nnnnn'],
+  commandAliases: ['navigation', 'nav'],
   canBeChannelRestricted: true,
-  uniqueId: 'nav403543',
+  uniqueId: 'navigation',
   serverAdminOnly: false,
   shortDescription: 'Demonstrate how to use a navigation.',
-  aliasesForHelp: ['bot!navigation', 'bot!nav'],
-  action(bot, msg, suffix) {
+  aliasesForHelp: ['navigation', 'nav'],
+  action(bot, msg, suffix, monochrome) {
     let randomNumberChapter = new NavigationChapter(new RandomNumberDataSource());
 
     const latinPar1 = {embed: {title: 'Page 1', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}};
@@ -51,7 +49,8 @@ module.exports = {
     };
 
     let navigation = new Navigation(msg.author.id, true, '🇮🇹', chapterForReaction);
-    return navigationManager.register(navigation, 10000000, msg);
+    const navigationManager = monochrome.getNavigationManager();
+    return navigationManager.show(navigation, 10000000, msg);
   },
 };
 
@@ -72,10 +71,11 @@ class RandomNumberDataSource {
     let number = Math.floor((Math.random() * 1000) % 1000);
 
     // Either a NavigationPage or a Promise that returns a NavigationPage can be returned.
-    return new NavigationPage({
+    return {
       embed: {
         title: 'Random Number ' + (pageIndex + 1).toString(),
         description: (number + 1).toString(),
-      }});
+      }
+    };
   }
 }

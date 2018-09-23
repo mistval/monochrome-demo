@@ -1,6 +1,5 @@
 'use strict'
 const request = require('request-promise').defaults({encoding: null});
-const logger = require('monochrome-bot').logger;
 const PublicError = require('monochrome-bot').PublicError;
 
 /**
@@ -8,10 +7,11 @@ const PublicError = require('monochrome-bot').PublicError;
 * Syntax: }setavatar [http url]
 */
 module.exports = {
-  commandAliases: ['}setavatar'],
+  commandAliases: ['setavatar'],
   botAdminOnly: true,
   shortDescription: 'Change my avatar.',
-  usageExample: '}setavatar http://url.com/image.png',
+  uniqueId: 'setavatar',
+  usageExample: '<prefix>setavatar http://url.com/image.png',
   action(bot, msg, suffix) {
     if (!suffix) {
       throw PublicError.createWithCustomPublicMessage('Say \'}setavatar [http url]\' to set my avatar.', false, 'No argument');

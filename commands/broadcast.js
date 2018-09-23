@@ -6,10 +6,11 @@ const PublicError = require('monochrome-bot').PublicError;
 * Syntax: }broadcast [channel_id] [announcement]
 */
 module.exports = {
-  commandAliases: ['}broadcast', '}b'],
+  commandAliases: ['broadcast', 'b'],
   botAdminOnly: true,
+  uniqueId: 'broadcast',
   shortDescription: 'Send a message as me.',
-  usageExample: '}broadcast [channelId] Hello!',
+  usageExample: '<prefix>broadcast channelId Hello!',
   action(bot, msg, suffix) {
     if (!suffix || suffix.indexOf(' ') === -1) {
       throw PublicError.createWithCustomPublicMessage('Say \'}broadcast [channel_id] [announcement]\' to broadcast a message.', false, 'Invalid syntax');

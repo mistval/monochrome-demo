@@ -8,10 +8,11 @@ const PublicError = require('monochrome-bot').PublicError;
 * Syntax: }delete [channel_id] [message_id]
 */
 module.exports = {
-  commandAliases: ['}delete', '}d'],
+  commandAliases: ['delete', 'd'],
   botAdminOnly: true,
+  uniqueId: 'delete',
   shortDescription: 'Delete a message.',
-  usageExample: '}setavatar [channelId] [messageId]',
+  usageExample: '<prefix>delete channelId messageId',
   action(bot, msg, suffix) {
     if (!suffix || suffix.indexOf(' ') === -1) {
       throw PublicError.createWithCustomPublicMessage('Say \'}delete [channel_id] [message_id]\' to delete a message.', false, 'Invalid syntax');

@@ -1,21 +1,22 @@
 'use strict'
-const persistence = require('monochrome-bot').persistence;
 const PublicError = require('monochrome-bot').PublicError;
 
 /**
 * Demonstrates persisting data.
 */
 module.exports = {
-  commandAliases: ['bot!addquote', 'bot!aq'],
+  commandAliases: ['addquote', 'aq'],
   canBeChannelRestricted: true,
-  uniqueId: 'addQuoteCommand490340259',
+  uniqueId: 'addquote',
   serverAdminOnly: false,
   shortDescription: 'Add a quote to my database.',
-  usageExample: '}addquote I\'m not very quotable',
-  action(bot, msg, suffix) {
+  usageExample: '<prefix>addquote I\'m not very quotable',
+  action(bot, msg, suffix, monochrome) {
     if (!suffix) {
       throw PublicError.createWithCustomPublicMessage('You gotta give me a quote to add!', true, 'No argument');
     }
+
+    const persistence = monochrome.getPersistence();
     return persistence.editGlobalData(globalData => {
       if (!globalData.quotes) {
         globalData.quotes = [];

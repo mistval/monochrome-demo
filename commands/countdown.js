@@ -5,12 +5,12 @@
 * Syntax: }broadcast [channel_id] [announcement]
 */
 module.exports = {
-  commandAliases: ['bot!countdown'],
+  commandAliases: ['countdown'],
   botAdminOnly: false,
-  uniqueId: 'countdown29490',
+  uniqueId: 'countdown',
   requiredSettings: ['fun/countdown_start'],
   shortDescription: 'Start a countdown.',
-  action(bot, msg, suffix, settings) {
+  action(bot, msg, suffix, monochrome, settings) {
     let countdownStart = settings['fun/countdown_start'];
     for (let i = countdownStart; i >= 0; --i) {
       setTimeout(() => {

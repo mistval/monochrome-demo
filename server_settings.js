@@ -1,17 +1,20 @@
+const { SettingsConverters, SettingsValidators } = require('monochrome-bot');
+
 module.exports = [
   {
-    "type": "CATEGORY", // "CATEGORY" for a group of settings, "SETTING" for a setting.
-    "userFacingName": "fun", // This is the name of the category. The user will see it if they use the settings command.
-    "children": // A category's children can be either other CATEGORYs or SETTINGs, but not both.
+    userFacingName: 'Fun', // This is the name of the category. The user will see it if they use the settings command.
+    children: // The children can be other categories, or they can be settings, or a mixture thereof.
     [
       {
-        "type": "SETTING",
-        "userFacingName": "countdown_start", // This is the name of the setting. The user will see it if they use the settings command. Its full path is fun/countdown_start.
-        "description": "This setting controls what number I'll count down from when you use the bot!countdown command.",
-        "valueType": "INTEGER", // Can be INTEGER, FLOAT, STRING, or BOOLEAN
-        "defaultDatabaseFacingValue": 10,
-        "allowedDatabaseFacingValues": "Range(1, 10)" // This can be a range as shown here, or an array of discrete values, or it can be undefined.
-      }
+        userFacingName: 'Countdown start',
+        description: 'This setting controls what number I\'ll count down from when you use the bot!countdown command.',
+        allowedValuesDescription: 'A number between 1 and 20 (in seconds)',
+        uniqueId: 'fun/countdown_start',
+        defaultUserFacingValue: '16', // The default user facing value should be a string (even if the internal value is a number or something else)
+        convertUserFacingValueToInternalValue: SettingsConverters.stringToFloat, // Provide a function to convert the user facing value to an internal value that you want to use in your bot code. The function can be async.
+        convertInternalValueToUserFacingValue: SettingsConverters.toString, // Provide a function to convert the internal value to a userFacingValue to display to the user. The function can be async.
+        validateInternalValue: SettingsValidators.createRangeValidator(1, 20), // Provide a function that takes an internal setting value and returns true for valid, or false for invalid. The function can be async.
+      },
     ]
   }
 ];

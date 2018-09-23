@@ -4,9 +4,10 @@
 * Syntax: }servers
 */
 module.exports = {
-  commandAliases: ['}servers', '}s'],
+  commandAliases: ['servers'],
   botAdminOnly: true,
   shortDescription: 'Show servers that I\'m in.',
+  uniqueId: 'servers',
   action(bot, msg, suffix) {
     let guildsString = Array.from(bot.guilds.values()).map(guild => {
       return guild.name + ' (' + guild.memberCount + ' members)';

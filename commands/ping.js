@@ -1,11 +1,15 @@
-'use strict'
 module.exports = {
-  commandAliases: ['bot!ping', 'bot!p'],
+  commandAliases: ['ping', 'p'],
+  uniqueId: 'ping',
+  cooldown: 5,
+  shortDescription: 'You say <prefix>ping, I say pong.',
+  longDescription: 'This command is really useless and has no need for a long description but ¯\_(ツ)_/¯',
+  usageExample: '<prefix>ping',
+  botAdminOnly: false,
   canBeChannelRestricted: true,
-  uniqueId: 'ping5959045',
-  serverAdminOnly: false,
-  shortDescription: 'You say bot!ping, I say pong.',
-  action(bot, msg, suffix) {
+  requiredSetting: ['unique_id_of_some_setting'],
+  aliasesForHelp: ['ping'],
+  action(bot, msg, suffix, monochrome, requestedSettings) {
     return msg.channel.createMessage('Pong!', null, msg);
   },
 };
