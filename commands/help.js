@@ -115,7 +115,7 @@ async function showGeneralHelp(msg, helpCommandHelper, prefix) {
 }
 
 function showAdvancedHelp(msg, targetAlias, helpCommandHelper, prefix) {
-  const command = helpCommandHelper.findCommandForAlias(targetAlias, msg.channel.guild ? msg.channel.guild.id : msg.channel.id);
+  const command = helpCommandHelper.findCommand(targetAlias, msg.channel.guild ? msg.channel.guild.id : msg.channel.id);
   if (!command) {
     return showGeneralHelp(msg, helpCommandHelper, prefix);
   }
@@ -131,9 +131,6 @@ function showAdvancedHelp(msg, targetAlias, helpCommandHelper, prefix) {
   }
   let permissionsString = '';
 
-  if (command.getIsForServerAdminOnly()) {
-    permissionsString += 'Server admin\n';
-  }
   if (command.getIsForBotAdminOnly()) {
     permissionsString += 'Bot admin\n';
   }
