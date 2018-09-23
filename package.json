@@ -10,7 +10,7 @@
   "author": "",
   "license": "Unlicense",
   "dependencies": {
-    "monochrome-bot": "git+https://github.com/mistval/monochrome.git#dev",
+    "monochrome-bot": "git+https://github.com/mistval/monochrome.git",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "require-reload": "^0.2.2"
