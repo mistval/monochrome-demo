@@ -50,7 +50,7 @@ module.exports = {
 
     let navigation = new Navigation(msg.author.id, true, '🇮🇹', chapterForReaction);
     const navigationManager = monochrome.getNavigationManager();
-    return navigationManager.show(navigation, 10000000, msg);
+    return navigationManager.show(navigation, 10000000, msg.channel, msg);
   },
 };
 
