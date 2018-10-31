@@ -9,12 +9,12 @@ module.exports = {
   serverAdminOnly: false,
   uniqueId: 'getquote',
   shortDescription: 'Get a random quote from my database.',
-  longDescription: 'Get a random quote from my database. I will randomly select a quote from among the quotes stored with the bot!addquote command.',
+  longDescription: 'Get a random quote from my database. I will randomly select a quote from among the quotes stored with the <prefix>addquote command.',
   action(bot, msg, suffix, monochrome, settings, extension) {
     const persistence = monochrome.getPersistence();
     return persistence.getGlobalData().then(globalData => {
       if (!globalData.quotes) {
-        return msg.channel.createMessage('There aren\'t any quotes yet :( Use the bot!addquote command to add some.');
+        return msg.channel.createMessage(`There aren't any quotes yet :( Use the ${msg.prefix}addquote command to add some.`);
       }
 
       let quoteIndex = Math.floor(Math.random() * globalData.quotes.length);
