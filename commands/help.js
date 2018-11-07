@@ -76,7 +76,7 @@ function createTopLevelHelpTextForCommands(commands, helpCommandAlias, prefix) {
   let helpText = '';
 
   if (WEB_COMMANDS_URI) {
-    helpText = `View commands online at <${WEB_COMMANDS_URI}>\n`;
+    helpText = `View commands online at ${WEB_COMMANDS_URI}\n`;
   }
 
   helpText += '```glsl\n';
