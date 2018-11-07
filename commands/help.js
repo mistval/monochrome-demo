@@ -6,6 +6,7 @@ const PublicError = require('monochrome-bot').PublicError;
 
 const EMBED_COLOR = 2522111;
 const ALIASES = ['help', 'h'];
+const WEB_COMMANDS_URI = ''; // If you have commands documentation on the web
 
 const COMMANDS_TO_GENERATE_HELP_FOR = [
   'ping',
@@ -71,11 +72,21 @@ function createTopLevelHelpTextForCommands(commands, helpCommandAlias, prefix) {
   if (commands.length === 0) {
     return;
   }
-  let helpText = '```glsl\n';
+
+  let helpText = '';
+
+  if (WEB_COMMANDS_URI) {
+    helpText = `View commands online at <${WEB_COMMANDS_URI}>\n`;
+  }
+
+  helpText += '```glsl\n';
+
   for (let command of commands) {
     helpText += createTopLevelHelpTextForCommand(command, prefix) + '\n';
   }
+
   helpText += `\nSay ${prefix}${helpCommandAlias} [command name] to see more help for a command. Example: ${prefix}${helpCommandAlias} ${commands[0].aliases[0]}\n\`\`\``;
+
   return helpText;
 }
 
