@@ -1,7 +1,4 @@
-
-const reload = require('require-reload')(require);
-const NavigationChapter = require('monochrome-bot').NavigationChapter;
-const Navigation = require('monochrome-bot').Navigation;
+const { Navigation, NavigationChapter } = require('monochrome-bot');
 
 /*
 * Demonstrates how to create a navigation with three chapters.

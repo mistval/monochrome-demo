@@ -1,5 +1,5 @@
 
-const PublicError = require('monochrome-bot').PublicError;
+const { PublicError } = require('monochrome-bot');
 
 module.exports = {
   commandAliases: ['reload'],

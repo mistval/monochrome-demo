@@ -1,5 +1,5 @@
 
-const PublicError = require('monochrome-bot').PublicError;
+const { PublicError } = require('monochrome-bot');
 
 /**
 * Evaluate arbitrary javascript code and return the result. Syntax: }eval [javascript code]
@@ -14,6 +14,8 @@ module.exports = {
     if (!suffix) {
       throw PublicError.createWithCustomPublicMessage('Say \'}eval [javascript code]\' to evaluate code.', false, 'No argument');
     }
+
+    // eslint-disable-next-line no-eval
     const result = eval(suffix);
     const text = JSON.stringify(result, null, 2);
     return msg.channel.createMessage(`\`\`\`js\n${text}\n\`\`\``);

@@ -1,6 +1,5 @@
 
-const reload = require('require-reload')(require);
-const PublicError = require('monochrome-bot').PublicError;
+const { PublicError } = require('monochrome-bot');
 
 // Configuration start
 
@@ -36,7 +35,10 @@ function validateCommand(command) {
     throw new Error(`The usageExample must be a string. It is not for ${commandName}`);
   } else if (command.longDescription && typeof command.longDescription !== typeof '') {
     throw new Error(`The longDescription must be a string. It is not for ${commandName}`);
-  } else if (command.aliasesForHelp && (!Array.isArray(command.aliasesForHelp) || command.aliasesForHelp.length < 1)) {
+  } else if (
+    command.aliasesForHelp &&
+    (!Array.isArray(command.aliasesForHelp) || command.aliasesForHelp.length < 1)
+  ) {
     throw new Error(`The aliasesForHelp must be an array. It is not for ${commandName}`);
   }
 }
@@ -70,7 +72,7 @@ function createTopLevelHelpTextForCommand(command, prefix) {
 
 function createTopLevelHelpTextForCommands(commands, helpCommandAlias, prefix) {
   if (commands.length === 0) {
-    return;
+    return undefined;
   }
 
   let helpText = '';
@@ -80,24 +82,14 @@ function createTopLevelHelpTextForCommands(commands, helpCommandAlias, prefix) {
   }
 
   helpText += '```glsl\n';
-
-  for (const command of commands) {
-    helpText += `${createTopLevelHelpTextForCommand(command, prefix)}\n`;
-  }
-
-  helpText += `\nSay ${prefix}${helpCommandAlias} [command name] to see more help for a command. Example: ${prefix}${helpCommandAlias} ${commands[0].aliases[0]}\n\`\`\``;
+  helpText += commands.map(command => createTopLevelHelpTextForCommand(command, prefix)).join('\n');
+  helpText += `\n\nSay ${prefix}${helpCommandAlias} [command name] to see more help for a command. Example: ${prefix}${helpCommandAlias} ${commands[0].aliases[0]}\n\`\`\``;
 
   return helpText;
 }
 
 function indexOfAliasInList(command, list) {
-  for (const alias of command.aliases) {
-    const index = list.indexOf(alias);
-    if (index !== -1) {
-      return index;
-    }
-  }
-  return -1;
+  return list.findIndex(alias => command.aliases.indexOf(alias) !== -1);
 }
 
 function compareCommandOrder(commandA, commandB, orderList) {
@@ -125,7 +117,11 @@ async function showGeneralHelp(msg, helpCommandHelper, prefix) {
 }
 
 function showAdvancedHelp(msg, targetAlias, helpCommandHelper, prefix) {
-  const command = helpCommandHelper.findCommand(targetAlias, msg.channel.guild ? msg.channel.guild.id : msg.channel.id);
+  const command = helpCommandHelper.findCommand(
+    targetAlias,
+    msg.channel.guild ? msg.channel.guild.id : msg.channel.id,
+  );
+
   if (!command) {
     return showGeneralHelp(msg, helpCommandHelper, prefix);
   }
@@ -177,9 +173,7 @@ module.exports = {
       COMMANDS_TO_GENERATE_HELP_FOR,
     );
 
-    for (const command of commandsForTopLevelHelp) {
-      validateCommand(command);
-    }
+    commandsForTopLevelHelp.forEach(validateCommand);
 
     const persistence = monochrome.getPersistence();
     const prefix = persistence.getPrimaryPrefixForMessage(msg);

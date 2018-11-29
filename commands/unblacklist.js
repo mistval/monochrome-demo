@@ -1,4 +1,4 @@
-const PublicError = require('monochrome-bot').PublicError;
+const { PublicError } = require('monochrome-bot');
 
 /**
 * Blacklist a user with a reason
