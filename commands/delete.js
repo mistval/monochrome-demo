@@ -1,4 +1,4 @@
-'use strict'
+
 const PublicError = require('monochrome-bot').PublicError;
 
 /**
@@ -17,7 +17,7 @@ module.exports = {
     if (!suffix || suffix.indexOf(' ') === -1) {
       throw PublicError.createWithCustomPublicMessage('Say \'}delete [channel_id] [message_id]\' to delete a message.', false, 'Invalid syntax');
     }
-    let parts = suffix.split(' ');
+    const parts = suffix.split(' ');
     return bot.deleteMessage(parts[0], parts[1]);
   },
 };

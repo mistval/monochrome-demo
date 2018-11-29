@@ -1,5 +1,6 @@
 const reload = require('require-reload')(require);
 const assert = require('assert');
+
 const Hook = reload('./../message_processors/user_and_channel_hook.js');
 const state = require('./../unreloadable_data.js');
 
@@ -90,13 +91,13 @@ function createFieldsForChildren(children) {
 
   let optionNumber = 0;
 
-  const settingsString = settings.map(setting => {
+  const settingsString = settings.map((setting) => {
     optionNumber += 1;
     const adminOnlyString = !setting.userSetting ? ' (*server admin only*)' : '';
     return `${optionNumber}. ${setting.userFacingName}${adminOnlyString}`;
   }).join('\n');
 
-  const categoriesString = categories.map(category => {
+  const categoriesString = categories.map((category) => {
     optionNumber += 1;
     return `${optionNumber}. ${category.userFacingName}`;
   }).join('\n');
@@ -166,7 +167,7 @@ async function createContentForSetting(msg, settings, setting, iconUri) {
             msg.channel.id,
             msg.author.id,
           ),
-        }
+        },
       ],
       footer: {
         icon_url: iconUri,
@@ -261,21 +262,21 @@ function getChannelIds(locationString, msg) {
 function createLocationPromptString(settingNode, isDm) {
   if (isDm) {
     if (settingNode.userSetting && (settingNode.serverSetting || settingNode.channelSetting)) {
-      return `Where should the new setting be applied? You can say **${Location.ME}** or **${Location.THIS_SERVER}**. You can also say **${CANCEL}** or **${BACK}**.`
+      return `Where should the new setting be applied? You can say **${Location.ME}** or **${Location.THIS_SERVER}**. You can also say **${CANCEL}** or **${BACK}**.`;
     }
     throw new Error('If we\'re in a DM and the setting isn\'t a userSetting and either a server or channel setting, we shouldn\'t prompt for location.');
   }
   if (settingNode.serverSetting && settingNode.userSetting && settingNode.channelSetting) {
-    return `Where should the new setting be applied? You can say **${Location.ME}**, **${Location.THIS_SERVER}**, **${Location.THIS_CHANNEL}**, or list channels, for example: **#general #bot #quiz**. You can also say **${CANCEL}** or **${BACK}**.`
+    return `Where should the new setting be applied? You can say **${Location.ME}**, **${Location.THIS_SERVER}**, **${Location.THIS_CHANNEL}**, or list channels, for example: **#general #bot #quiz**. You can also say **${CANCEL}** or **${BACK}**.`;
   }
   if (settingNode.serverSetting && settingNode.channelSetting) {
-    return `Where should the new setting be applied? You can say **${Location.THIS_SERVER}**, **${Location.THIS_CHANNEL}**, or list channels, for example: **#general #bot #quiz**. You can also say **${CANCEL}** or **${BACK}**.`
+    return `Where should the new setting be applied? You can say **${Location.THIS_SERVER}**, **${Location.THIS_CHANNEL}**, or list channels, for example: **#general #bot #quiz**. You can also say **${CANCEL}** or **${BACK}**.`;
   }
   if (settingNode.serverSetting && settingNode.userSetting) {
-    return `Where should the new setting be applied? You can say **${Location.ME}** or **${Location.THIS_SERVER}**. You can also say **${CANCEL}** or **${BACK}**.`
+    return `Where should the new setting be applied? You can say **${Location.ME}** or **${Location.THIS_SERVER}**. You can also say **${CANCEL}** or **${BACK}**.`;
   }
   if (settingNode.userSetting && setting.channelSetting) {
-    return `Where should the new setting be applied? You can say **${Location.ME}**, **${Location.THIS_CHANNEL}**, or list channels, for example: **#general #bot #quiz**. You can also say **${CANCEL}** or **${BACK}**.`
+    return `Where should the new setting be applied? You can say **${Location.ME}**, **${Location.THIS_CHANNEL}**, or list channels, for example: **#general #bot #quiz**. You can also say **${CANCEL}** or **${BACK}**.`;
   }
   if (settingNode.userSetting) {
     throw new Error('If the setting is only a user setting, we shouldn\'t be prompting for location.');
@@ -284,7 +285,7 @@ function createLocationPromptString(settingNode, isDm) {
     throw new Error('If the setting is only a server setting, we shouldn\'t be prompting for location.');
   }
   if (settingNode.channelSetting) {
-    return `Where should the new setting be applied? You can say **${Location.THIS_CHANNEL}**, or list channels, for example: **#general #bot #quiz**. You can also say **${CANCEL}** or **${BACK}**.`
+    return `Where should the new setting be applied? You can say **${Location.THIS_CHANNEL}**, or list channels, for example: **#general #bot #quiz**. You can also say **${CANCEL}** or **${BACK}**.`;
   }
   throw new Error('Unexpected fallthrough');
 }
@@ -365,9 +366,8 @@ async function requestConfirmation(hook, monochrome, msg, setting, newUserFacing
       const contentLowerCase = cbMsg.content.toLowerCase();
       if (contentLowerCase === 'confirm') {
         return tryApplyNewSetting(cbHook, monochrome, cbMsg, setting, newUserFacingValue, locationString, true);
-      } else {
-        return msg.channel.createMessage('I don\'t understand that response. You can say **confirm** to confirm, or **cancel** to cancel.', null, msg);
       }
+      return msg.channel.createMessage('I don\'t understand that response. You can say **confirm** to confirm, or **cancel** to cancel.', null, msg);
     },
     monochrome.getLogger(),
   );
@@ -414,9 +414,7 @@ async function tryApplyNewSetting(hook, monochrome, msg, setting, newUserFacingV
     const channelStrings = locationString.split(/ +/);
     const channelIds = getChannelIds(locationString, msg);
 
-    const promises = channelIds.map(channelId => {
-      return settings.setChannelSettingValue(setting.uniqueId, serverId, channelId, newUserFacingValue, userIsServerAdmin);
-    });
+    const promises = channelIds.map(channelId => settings.setChannelSettingValue(setting.uniqueId, serverId, channelId, newUserFacingValue, userIsServerAdmin));
 
     setResults = await Promise.all(promises);
   }
@@ -593,9 +591,8 @@ function showNode(monochrome, msg, node) {
     return showRoot(monochrome, msg);
   } else if (node.children) {
     return showCategory(monochrome, msg, node);
-  } else {
-    return showSetting(monochrome, msg, node);
   }
+  return showSetting(monochrome, msg, node);
 }
 
 function shortcut(monochrome, msg, suffix) {
@@ -624,8 +621,7 @@ module.exports = {
     clearStateForMsg(msg);
     if (suffix) {
       return shortcut(monochrome, msg, suffix);
-    } else {
-      return showNode(monochrome, msg, monochrome.getSettings().getRawSettingsTree());
     }
+    return showNode(monochrome, msg, monochrome.getSettings().getRawSettingsTree());
   },
 };

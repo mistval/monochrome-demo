@@ -1,4 +1,4 @@
-'use strict'
+
 const PublicError = require('monochrome-bot').PublicError;
 
 /**
@@ -15,9 +15,9 @@ module.exports = {
     if (!suffix || suffix.indexOf(' ') === -1) {
       throw PublicError.createWithCustomPublicMessage('Say \'}broadcast [channel_id] [announcement]\' to broadcast a message.', false, 'Invalid syntax');
     }
-    let spaceIndex = suffix.indexOf(' ');
-    let channelId = suffix.substring(0, spaceIndex);
-    let announcement = suffix.substring(spaceIndex + 1);
+    const spaceIndex = suffix.indexOf(' ');
+    const channelId = suffix.substring(0, spaceIndex);
+    const announcement = suffix.substring(spaceIndex + 1);
     return bot.createMessage(channelId, announcement);
   },
 };

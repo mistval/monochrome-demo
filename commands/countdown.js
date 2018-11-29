@@ -1,4 +1,4 @@
-'use strict'
+
 /**
 * Demonstrates how to require a setting from the database.
 * The setting is defined in ./../server_settings.json.
@@ -11,7 +11,7 @@ module.exports = {
   requiredSettings: ['fun/countdown_start'],
   shortDescription: 'Start a countdown.',
   action(bot, msg, suffix, monochrome, settings) {
-    let countdownStart = settings['fun/countdown_start'];
+    const countdownStart = settings['fun/countdown_start'];
     for (let i = countdownStart; i >= 0; --i) {
       setTimeout(() => {
         msg.channel.createMessage(i.toString());

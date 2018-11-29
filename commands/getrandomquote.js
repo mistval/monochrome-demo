@@ -1,4 +1,4 @@
-'use strict'
+
 
 /**
 * Demonstrates getting persisted data.
@@ -12,7 +12,7 @@ module.exports = {
   longDescription: 'Get a random quote from my database. I will randomly select a quote from among the quotes stored with the <prefix>addquote command.',
   action(bot, msg, suffix, monochrome, settings, extension) {
     const persistence = monochrome.getPersistence();
-    return persistence.getGlobalData().then(globalData => {
+    return persistence.getGlobalData().then((globalData) => {
       if (!globalData.quotes) {
         return msg.channel.createMessage(`There aren't any quotes yet :( Use the ${msg.prefix}addquote command to add some.`);
       }
@@ -22,14 +22,14 @@ module.exports = {
         quoteIndex = globalData.quotes.length - 1;
       }
 
-      let content = {};
+      const content = {};
       content.embed = {};
       content.embed.title = 'Random Quote';
-      content.embed.description = '"' + globalData.quotes[quoteIndex].quote + '" - ' + globalData.quotes[quoteIndex].user;
+      content.embed.description = `"${globalData.quotes[quoteIndex].quote}" - ${globalData.quotes[quoteIndex].user}`;
       return msg.channel.createMessage(content);
     });
   },
   canHandleExtension(extension) {
     return extension === '-newest';
-  }
+  },
 };

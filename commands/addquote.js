@@ -1,4 +1,4 @@
-'use strict'
+
 const PublicError = require('monochrome-bot').PublicError;
 
 /**
@@ -17,14 +17,12 @@ module.exports = {
     }
 
     const persistence = monochrome.getPersistence();
-    return persistence.editGlobalData(globalData => {
+    return persistence.editGlobalData((globalData) => {
       if (!globalData.quotes) {
         globalData.quotes = [];
       }
-      globalData.quotes.push({user: msg.author.username, quote: suffix});
+      globalData.quotes.push({ user: msg.author.username, quote: suffix });
       return globalData;
-    }).then(() => {
-      return msg.channel.createMessage('Quote added!');
-    });
+    }).then(() => msg.channel.createMessage('Quote added!'));
   },
 };

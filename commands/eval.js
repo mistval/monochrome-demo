@@ -1,4 +1,4 @@
-'use strict'
+
 const PublicError = require('monochrome-bot').PublicError;
 
 /**
@@ -14,8 +14,8 @@ module.exports = {
     if (!suffix) {
       throw PublicError.createWithCustomPublicMessage('Say \'}eval [javascript code]\' to evaluate code.', false, 'No argument');
     }
-    let result = eval(suffix);
-    let text = JSON.stringify(result, null, 2);
-    return msg.channel.createMessage('```js\n' + text + '\n```');
+    const result = eval(suffix);
+    const text = JSON.stringify(result, null, 2);
+    return msg.channel.createMessage(`\`\`\`js\n${text}\n\`\`\``);
   },
 };

@@ -1,4 +1,4 @@
-'use strict'
+
 const reload = require('require-reload')(require);
 const PublicError = require('monochrome-bot').PublicError;
 
