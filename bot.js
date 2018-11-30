@@ -1,9 +1,9 @@
-let monochrome = require('monochrome-bot');
+const monochrome = require('monochrome-bot');
 
-let commandsDirectoryPath = __dirname + '/commands';
-let messageProcessorsDirectoryPath = __dirname + '/message_processors';
-let settingsFilePath = __dirname + '/server_settings.js';
-let logsDirectoryPath = __dirname + '/logs';
+const commandsDirectoryPath = __dirname + '/commands';
+const messageProcessorsDirectoryPath = __dirname + '/message_processors';
+const settingsFilePath = __dirname + '/server_settings.js';
+const logsDirectoryPath = __dirname + '/logs';
 
 let bot = new monochrome({
   botToken: '', // (required) YOUR BOT TOKEN HERE. Recommend keeping it in a config file and gitignoring it.

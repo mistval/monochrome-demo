@@ -1,4 +1,3 @@
-
 const { PublicError } = require('monochrome-bot');
 
 module.exports = {

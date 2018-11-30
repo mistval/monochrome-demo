@@ -1,5 +1,3 @@
-
-
 /**
 * Demonstrates getting persisted data.
 */

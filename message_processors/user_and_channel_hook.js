@@ -1,4 +1,3 @@
-
 const unreloadableDataStore = require('./../unreloadable_data.js');
 
 if (!unreloadableDataStore.hookForUserAndChannel) {

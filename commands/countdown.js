@@ -1,4 +1,3 @@
-
 /**
 * Demonstrates how to require a setting from the database.
 * The setting is defined in ./../server_settings.json.
