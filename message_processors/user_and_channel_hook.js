@@ -1,3 +1,4 @@
+
 const unreloadableDataStore = require('./../unreloadable_data.js');
 
 if (!unreloadableDataStore.hookForUserAndChannel) {
@@ -48,10 +49,6 @@ class Hook {
     );
   }
 
-  callback(msg, monochrome) {
-    return this.callback(this, msg, monochrome);
-  }
-
   getIdentifier() {
     return createHookIdentifier(this.userId, this.channelId);
   }
@@ -63,11 +60,11 @@ class Hook {
 */
 module.exports = {
   name: 'Followup Message',
-  action(erisBot, msg, monochrome) {
+  action(bot, msg, monochrome) {
     const hookIdentifier = createHookIdentifier(msg.author.id, msg.channel.id);
     const correspondingHook = unreloadableDataStore.hookForUserAndChannel[hookIdentifier];
     if (correspondingHook) {
-      return correspondingHook.callback(msg, monochrome);
+      return correspondingHook.callback(correspondingHook, msg, monochrome);
     }
     return false;
   },
