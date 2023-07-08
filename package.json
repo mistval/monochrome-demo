@@ -10,7 +10,7 @@
   "author": "",
   "license": "Unlicense",
   "dependencies": {
-    "monochrome-bot": "2.0.6",
+    "monochrome-bot": "2.3.9",
     "require-reload": "^0.2.2"
   }
 }
